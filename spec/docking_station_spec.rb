@@ -16,7 +16,6 @@ end
 describe DockingStation do
 
   describe '#release_bike' do
-
     it 'release a bike' do
       bike = Bike.new
       subject.dock(bike)
@@ -34,9 +33,15 @@ describe DockingStation do
       subject.dock(bike)
       expect(subject.bike).to eq bike
     end
+    it 'rejects another bike' do
+      bike = Bike.new
+      20.times { subject.dock Bike.new }
+      expect { subject.dock(bike) }.to raise_error 'No bike space'
   end
+  
   describe '#bike to return a docked bike' do
       bike = DockingStation.new.bike
     it { is_expected.to respond_to(:bike) }
   end
+end
 end
