@@ -16,7 +16,7 @@ end
 describe DockingStation do
 
   describe '#release_bike' do
-    it 'release a bike' do
+    it 'can release a bike' do
       bike = Bike.new
       subject.dock(bike)
       expect(subject.release_bike).to eq bike
@@ -40,8 +40,15 @@ describe DockingStation do
   end
   
   describe '#bike to return a docked bike' do
+    it 'allows bike to be returned' do
       bike = DockingStation.new.bike
-    it { is_expected.to respond_to(:bike) }
+    expect { is_expected.to respond_to(:bike) }
+  end
+end
+  describe 'default capacity is 20' do
+    it 'checks the default is 20 bikes max' do
+      expect(subject.capacity).to eq(20)
+    end
   end
 end
 end
